@@ -21,8 +21,8 @@ class SimpleMLP(nn.Module):
         
     def forward(self, x):
         x = self.fc1(x)
-        _, indices = torch.sort(x,dim=-1)
-        x = torch.gather(self.fc2(x), dim=-1, index=indices)
+        x, _ = torch.sort(x,dim=-1)
+        x = self.fc2(x)
         x = self.fc3(x)
         return x
 
